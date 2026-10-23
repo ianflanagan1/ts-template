@@ -1,0 +1,32 @@
+{
+  "name": "{{ project_name }}",
+  "description": "{{ description }}",
+  "private": true,
+  "type": "module",
+  "packageManager": "pnpm@{{ pnpm_version }}",
+  "engines": {
+    "node": "{{ node_version }}"
+  },
+  "scripts": {
+    "start": "node src/main.ts",
+    "typecheck": "tsc -p .",
+    "lint": "eslint --max-warnings 0 .",
+    "test": "vitest run",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "deps": "depcruise src --config .dependency-cruiser.js",
+    "knip": "knip",
+    "baseline": "ts-baseline verify",
+    "check": "pnpm format:check && pnpm typecheck && pnpm lint && pnpm deps && pnpm knip && pnpm baseline && pnpm test"
+  },
+  "devDependencies": {
+    "@ianflanagan1/ts-baseline": "{{ baseline_version }}",
+    "@types/node": "^24.19.2",
+    "dependency-cruiser": "^18.7.0",
+    "eslint": "^10.13.0",
+    "knip": "^6.42.1",
+    "prettier": "^3.9.10",
+    "typescript": "~6.0.3",
+    "vitest": "^5.0.5"
+  }
+}

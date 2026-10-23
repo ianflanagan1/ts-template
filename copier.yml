@@ -1,0 +1,27 @@
+_subdirectory: template
+_answers_file: .copier-answers.yml
+# Installing writes the lockfile that `devbox run setup` then installs from; copier asks for --trust to run it.
+_tasks:
+  - devbox run -- pnpm install
+
+project_name:
+  type: str
+  help: Package name, in kebab-case
+  validator: "{% if not (project_name | regex_search('^[a-z0-9][a-z0-9-]*$')) %}Use lowercase letters, digits and hyphens{% endif %}"
+
+description:
+  type: str
+  help: One sentence on what the project is
+
+node_version:
+  type: str
+  default: 24.21.0
+
+pnpm_version:
+  type: str
+  default: 12.9.0
+
+baseline_version:
+  type: str
+  help: The @ianflanagan1/ts-baseline version range
+  default: ^0.1.0

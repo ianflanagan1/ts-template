@@ -1,0 +1,20 @@
+# {{ project_name }}
+
+{{ description }}
+
+## Tasks
+
+Run everything through devbox: `devbox run setup` installs dependencies; `devbox run check` checks formatting and runs every type check, linter and test, failing on any problem; `devbox run format` fixes formatting; `devbox run lint-file <files>` formats and lints just those files.
+
+Lint, compiler and format settings come from `@ianflanagan1/ts-baseline`, and `check` runs `ts-baseline verify`: change them there, not here. Project-specific rules go after `baseline(...)` in `eslint.config.js` and in `.dependency-cruiser.js`.
+
+The project came from `ts-template`; `copier update --trust` brings in later changes to it.
+
+## Layout
+
+- `src/core/`: decisions as pure functions over plain values; dependency-cruiser keeps it free of I/O
+- `src/main.ts`: the top-level handler
+
+## Decisions made
+
+## Open questions

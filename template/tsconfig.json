@@ -1,0 +1,9 @@
+{
+  "extends": "@ianflanagan1/ts-baseline/tsconfig.json",
+  "compilerOptions": {
+    "types": ["node"],
+    "allowJs": true,
+    "checkJs": true
+  },
+  "include": ["src", "*.js", "*.ts", ".dependency-cruiser.js"]
+}

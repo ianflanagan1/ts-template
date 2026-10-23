@@ -1,0 +1,15 @@
+// The top-level handler: it runs the program and turns any error into a message and a non-zero exit code.
+function run(): void {
+  console.log('{{ project_name }}: nothing here yet.');
+}
+
+function main(): void {
+  try {
+    run();
+  } catch (error: unknown) {
+    console.error(error);
+    process.exitCode = 1;
+  }
+}
+
+main();
