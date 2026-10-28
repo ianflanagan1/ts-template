@@ -15,6 +15,7 @@ copier copy --trust gh:ianflanagan1/ts-template my-project
 - dependency-cruiser keeping `src/core/` free of I/O, knip for unused code and dependencies, Vitest
 - a `Result` type in the core, a `main()` top-level handler, a GitHub Actions workflow that runs `devbox run check`
 - a `CLAUDE.md` to fill in
+- `.config/ianf-repo-tools.toml` with the integration mode you choose (`local`, `pr-rebase` or `pr-merge`), which [repo-list and repo-fix](https://github.com/ianflanagan1/repo-tools) read; there's no default
 
 Settings that belong to every project live in the baseline package, so they reach existing projects as a version bump. The template only holds what can't be a package: devbox, scripts, CI and starting files.
 

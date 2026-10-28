@@ -13,6 +13,16 @@ description:
   type: str
   help: One sentence on what the project is
 
+# How work reaches the trunk, which repo-list and repo-fix read. No default: a wrong guess would push or rewrite the
+# wrong things.
+integration:
+  type: str
+  help: How work reaches the trunk
+  choices:
+    "local: commit on the trunk and push it": local
+    "pr-rebase: branches are rebased and land through pull requests": pr-rebase
+    "pr-merge: branches merge the trunk in and land through pull requests": pr-merge
+
 node_version:
   type: str
   default: 24.21.0
