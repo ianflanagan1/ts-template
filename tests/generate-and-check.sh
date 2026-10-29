@@ -6,10 +6,10 @@
 # BASELINE, when set, replaces the @ianflanagan1/ts-baseline version range, e.g. file:/path/to/package.tgz to try a
 # baseline that isn't on npm yet.
 
-set -eu
+set -o errexit -o nounset
 
 root=$(cd "$(dirname "$0")/.." && pwd)
-out=$(mktemp -d)
+out=$(mktemp --directory)
 trap 'rm -rf "$out"' EXIT
 
 copier copy --trust --defaults --quiet \
@@ -18,9 +18,9 @@ copier copy --trust --defaults --quiet \
     "$root" "$out/sample"
 
 cd "$out/sample"
-grep -qx 'integration = "pr-rebase"' .config/ianf-repo-tools.toml || {
+grep --quiet --line-regexp 'integration = "pr-rebase"' .config/ianf-repo-tools.toml || {
     echo 'The project has no .config/ianf-repo-tools.toml with integration = "pr-rebase".' >&2
     exit 1
 }
-git init -q
+git init --quiet
 devbox run check
