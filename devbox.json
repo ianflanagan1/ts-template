@@ -1,11 +1,4 @@
 {
   "$schema": "https://raw.githubusercontent.com/jetify-com/devbox/0.18.4/.schema/devbox.schema.json",
-  "packages": ["copier@9.17.1", "git@latest", "shellcheck@latest"],
-  "shell": {
-    "scripts": {
-      "lint": "shellcheck --shell sh tests/*.sh",
-      "test": "sh tests/generate-and-check.sh",
-      "check": "devbox run lint && devbox run test"
-    }
-  }
+  "packages": ["copier@9.17.1", "git@latest", "go-task@3.53.1"]
 }

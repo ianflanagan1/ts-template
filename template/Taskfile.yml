@@ -1,0 +1,30 @@
+version: '3'
+
+# check, format and lint-file run the baseline's tasks, so their commands arrive as a version bump of
+# @ianflanagan1/ts-baseline. Add the project's own steps around them. The include is optional because setup
+# installs it.
+includes:
+  baseline:
+    taskfile: ./node_modules/@ianflanagan1/ts-baseline/Taskfile.baseline.yml
+    optional: true
+
+tasks:
+  setup:
+    desc: Install dependencies from the lockfile
+    cmds:
+      - pnpm install --frozen-lockfile
+
+  check:
+    desc: Formatting, types, lint, dependency rules, knip, ts-baseline verify and tests
+    cmds:
+      - task: baseline:check
+
+  format:
+    desc: Format every file
+    cmds:
+      - task: baseline:format
+
+  lint-file:
+    desc: Format, fix and lint the files given after --
+    cmds:
+      - task: baseline:lint-file

@@ -8,16 +8,7 @@
     "node": "{{ node_version }}"
   },
   "scripts": {
-    "start": "node src/main.ts",
-    "typecheck": "tsc --project .",
-    "lint": "eslint --max-warnings 0 .",
-    "test": "vitest run",
-    "format": "prettier --write .",
-    "format:check": "prettier --check .",
-    "deps": "depcruise src --config .dependency-cruiser.js",
-    "knip": "knip",
-    "baseline": "ts-baseline verify",
-    "check": "pnpm format:check && pnpm typecheck && pnpm lint && pnpm deps && pnpm knip && pnpm baseline && pnpm test"
+    "start": "node src/main.ts"
   },
   "devDependencies": {
     "@ianflanagan1/ts-baseline": "{{ baseline_version }}",

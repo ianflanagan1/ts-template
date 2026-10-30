@@ -1,0 +1,26 @@
+version: '3'
+
+tasks:
+  check:
+    desc: Generate a project from the template and run its own check
+    cmds:
+      - task: test
+
+  test:
+    desc: >-
+      Generate a project from the template and run its own check, ts-baseline verify included. BASELINE replaces the
+      @ianflanagan1/ts-baseline version range, e.g. file:/path/to/package.tgz to try a baseline that isn't on npm yet.
+    vars:
+      OUT:
+        sh: mktemp -d
+    cmds:
+      - defer: rm -rf {{shellQuote .OUT}}
+      - >-
+        copier copy --trust --defaults --quiet
+        --data project_name=sample --data description='A sample project' --data integration=pr-rebase
+        {{if .BASELINE}}--data baseline_version={{shellQuote .BASELINE}}{{end}}
+        . {{shellQuote .OUT}}/sample
+      # The project declares the integration mode it was given, which repo-list and repo-fix read.
+      - grep --quiet --line-regexp 'integration = "pr-rebase"' {{shellQuote .OUT}}/sample/.config/ianf-repo-tools.toml
+      - git -C {{shellQuote .OUT}}/sample init --quiet
+      - cd {{shellQuote .OUT}}/sample && devbox run -- task check

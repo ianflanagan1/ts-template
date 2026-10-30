@@ -4,9 +4,9 @@
 
 ## Tasks
 
-Run everything through devbox: `devbox run setup` installs dependencies; `devbox run check` checks formatting and runs every type check, linter and test, failing on any problem; `devbox run format` fixes formatting; `devbox run lint-file <files>` formats and lints just those files.
+Every task is in `Taskfile.yml`; run it through devbox, which pins the tools: `devbox run -- task setup` installs dependencies; `devbox run -- task check` checks formatting and runs every type check, linter and test, failing on any problem; `devbox run -- task format` fixes formatting; `devbox run -- task lint-file -- <files>` formats and lints just those files.
 
-Lint, compiler and format settings come from `@ianflanagan1/ts-baseline`, and `check` runs `ts-baseline verify`: change them there, not here. Project-specific rules go after `baseline(...)` in `eslint.config.js` and in `.dependency-cruiser.js`.
+Lint, compiler, format and dependency rules come from `@ianflanagan1/ts-baseline`, and so do the commands `check`, `format` and `lint-file` run, through the baseline's Taskfile included as `baseline`. `check` runs `ts-baseline verify`, which fails if the project weakens any of them: change them there, not here. Project-specific rules go after `baseline(...)` in `eslint.config.js` and in `.dependency-cruiser.js`, which extends the baseline's; project-specific steps go around `task: baseline:check` in `Taskfile.yml`.
 
 The project came from `ts-template`; `copier update --trust` brings in later changes to it.
 

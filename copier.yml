@@ -1,6 +1,6 @@
 _subdirectory: template
 _answers_file: .copier-answers.yml
-# Installing writes the lockfile that `devbox run setup` then installs from; copier asks for --trust to run it.
+# Installing writes the lockfile that `devbox run -- task setup` then installs from; copier asks for --trust to run it.
 _tasks:
   - devbox run -- pnpm install
 
@@ -34,4 +34,4 @@ pnpm_version:
 baseline_version:
   type: str
   help: The @ianflanagan1/ts-baseline version range
-  default: ^0.1.0
+  default: ^0.2.0
